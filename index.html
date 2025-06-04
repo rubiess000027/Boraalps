@@ -2,29 +2,29 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <title>Rengin'e Özel</title>
+  <title>Rengin'e</title>
   <style>
     body {
-      background: linear-gradient(to bottom right, #f5f7fa, #c3cfe2);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
       margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(to bottom right, #f8f9fa, #e0e7ff);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow: hidden;
     }
 
-    .quote-box {
-      background-color: white;
-      border-radius: 15px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-      padding: 40px;
-      text-align: center;
-      max-width: 600px;
+    .text {
+      font-size: 2.5em;
+      color: #333;
+      opacity: 0;
+      animation: fadeIn 2s forwards;
+      white-space: nowrap;
     }
 
-    .black-white {
-      color: #444;
+    .text:nth-child(2) {
+      animation-delay: 2s;
     }
 
     .rengin {
@@ -34,20 +34,20 @@
       font-weight: bold;
     }
 
-    .signature {
-      margin-top: 20px;
-      font-style: italic;
-      color: #999;
+    @keyframes fadeIn {
+      from {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="quote-box">
-    <p>
-      <span class="black-white">Dünyam siyah beyazdı,</span> sen geldin… 
-      <span class="rengin">Adın gibi Rengin oldum.</span>
-    </p>
-    <div class="signature">❤️</div>
-  </div>
+  <div class="text">Dünyam siyah beyazdı, sen geldin…</div>
+  <div class="text"><span class="rengin">Adın gibi Rengin oldum.</span></div>
 </body>
 </html>
