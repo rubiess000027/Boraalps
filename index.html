@@ -1,49 +1,53 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>aptal cüce ela</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        .heart {
-            width: 100px;
-            height: 90px;
-            position: relative;
-            margin: 40px auto 0;
-            opacity: 0;
-            transform: scale(0);
-            transition: all 2s ease-in-out;
-        }
+  <meta charset="UTF-8">
+  <title>Rengin'e Özel</title>
+  <style>
+    body {
+      background: linear-gradient(to bottom right, #f5f7fa, #c3cfe2);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
 
-        .heart::before,
-        .heart::after {
-            content: "";
-            position: absolute;
-            width: 100px;
-            height: 90px;
-            background: red;
-            border-radius: 50px 50px 0 0;
-            top: 0;
-            left: 0;
-        }
+    .quote-box {
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      padding: 40px;
+      text-align: center;
+      max-width: 600px;
+    }
 
-        .heart::after {
-            left: 50px;
-        }
+    .black-white {
+      color: #444;
+    }
 
-        .show-heart {
-            opacity: 1;
-            transform: scale(1);
-        }
-    </style>
+    .rengin {
+      background: linear-gradient(to right, #ff6ec4, #7873f5, #4ade80);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: bold;
+    }
+
+    .signature {
+      margin-top: 20px;
+      font-style: italic;
+      color: #999;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1 id="main-text"></h1>
-        <p class="subtext">yavasi abla neyle buyuttun onlaru ham ham 🍒</p>
-        <div class="heart" id="heart"></div>
-    </div>
-    <script src="script.js"></script>
+  <div class="quote-box">
+    <p>
+      <span class="black-white">Dünyam siyah beyazdı,</span> sen geldin… 
+      <span class="rengin">Adın gibi Rengin oldum.</span>
+    </p>
+    <div class="signature">❤️</div>
+  </div>
 </body>
 </html>
