@@ -3,45 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rengin'e</title>
+  <title>Rengin'e Özel</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      height: 100vh;
-      background: linear-gradient(to bottom right, #f8f9fa, #e0e7ff);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #fce4ec, #e3f2fd);
       text-align: center;
+      color: #333;
       overflow: hidden;
     }
 
-    .text {
-      font-size: 6vw; /* Ekran genişliğine göre ölçeklenir */
-      color: #333;
-      opacity: 0;
-      animation: fadeIn 2s forwards;
-      margin: 10px 20px;
-      padding: 0 10px;
+    h1, h2, h3 {
+      margin: 0;
+      padding: 10px;
     }
 
-    .text:nth-child(2) {
-      animation-delay: 2s;
-    }
-
-    .rengin {
-      background: linear-gradient(to right, #ff6ec4, #7873f5, #4ade80);
+    .renkli {
+      background: linear-gradient(to right, violet, indigo, blue, green);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       font-weight: bold;
+      font-size: 2.5em;
+      animation: fadeIn 2s ease-in-out;
     }
 
-    @keyframes fadeIn {
+    .slide {
+      animation: slideIn 3s ease-out;
+      font-size: 1.8em;
+      margin-top: 50px;
+    }
+
+    img {
+      width: 300px;
+      max-width: 90%;
+      margin-top: 30px;
+      animation: fadeIn 4s ease-in;
+    }
+
+    @keyframes slideIn {
       from {
-        transform: translateY(40px);
+        transform: translateY(100px);
         opacity: 0;
       }
       to {
@@ -49,10 +52,22 @@
         opacity: 1;
       }
     }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
   </style>
 </head>
 <body>
-  <div class="text">Dünyam siyah beyazdı, sen geldin…</div>
-  <div class="text"><span class="rengin">Adın gibi Rengin oldum.</span></div>
+  <h2 class="slide">Dünyam siyah beyazdı, sen geldin…</h2>
+  <h3 class="slide">Adın gibi</h3>
+  <h1 class="renkli">Rengin</h1>
+  <img src="IMG_7508.jpeg" alt="Kalpli Fotoğraf">
 </body>
 </html>
