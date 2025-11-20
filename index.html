@@ -1,256 +1,103 @@
-const players = [
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>who am ı</title>
+<style>
+    body {
+        font-family: Arial;
+        text-align: center;
+        background: purple;
+        color: #fff;
+        padding: 30px;
+    }
+    #photo {
+        width: 250px;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 10px;
+        filter: blur(15px);
+        transition: 0.4s;
+        border: 3px solid #fff;
+    }
+    #input {
+        margin-top: 20px;
+        padding: 10px;
+        width: 200px;
+        border-radius: 6px;
+        border: none;
+    }
+    #btn {
+        padding: 10px 20px;
+        margin-left: 10px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+    #next {
+        display: none;
+        margin-top: 20px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+</style>
+</head>
+
+<body>
+
+<h2>WHO AM I</h2>
+
+<img id="photo">
+
+<div>
+    <input id="input" placeholder="Futbolcu adı...">
+    <button id="btn">Tahmin Et</button>
+</div>
+
+<button id="next">Sonraki Futbolcu</button>
+
+<script>
+    // Fotoğraflar (foto isimleri senin klasörüne göre)
+   const players = [
   {name:"Lionel Messi",img:"https://img.a.transfermarkt.technology/portrait/big/28003-1682683693.jpg"},
   {name:"Cristiano Ronaldo",img:"https://img.a.transfermarkt.technology/portrait/big/8198-1682683693.jpg"},
   {name:"Kylian Mbappé",img:"https://img.a.transfermarkt.technology/portrait/big/342229-1682683693.jpg"},
   {name:"Erling Haaland",img:"https://img.a.transfermarkt.technology/portrait/big/418560-1682683693.jpg"},
   {name:"Neymar",img:"https://img.a.transfermarkt.technology/portrait/big/68290-1682683693.jpg"},
   {name:"Kevin De Bruyne",img:"https://img.a.transfermarkt.technology/portrait/big/88755-1682683693.jpg"},
-  {name:"Vinicius Junior",img:"https://img.a.transfermarkt.technology/portrait/big/371998-1682683693.jpg"},
-  {name:"Rodri",img:"https://img.a.transfermarkt.technology/portrait/big/357565-1682683693.jpg"},
-  {name:"Jude Bellingham",img:"https://img.a.transfermarkt.technology/portrait/big/581678-1682683693.jpg"},
-  {name:"Mohamed Salah",img:"https://img.a.transfermarkt.technology/portrait/big/148455-1682683693.jpg"},
-  {name:"Harry Kane",img:"https://img.a.transfermarkt.technology/portrait/big/132098-1682683693.jpg"},
-  {name:"Robert Lewandowski",img:"https://img.a.transfermarkt.technology/portrait/big/38253-1682683693.jpg"},
-  {name:"Karim Benzema",img:"https://img.a.transfermarkt.technology/portrait/big/18922-1682683693.jpg"},
-  {name:"Lautaro Martinez",img:"https://img.a.transfermarkt.technology/portrait/big/406625-1682683693.jpg"},
-  {name:"Sadio Mané",img:"https://img.a.transfermarkt.technology/portrait/big/200512-1682683693.jpg"},
-  {name:"Gavi",img:"https://img.a.transfermarkt.technology/portrait/big/646740-1682683693.jpg"},
-  {name:"Pedri",img:"https://img.a.transfermarkt.technology/portrait/big/683964-1682683693.jpg"},
-  {name:"Frenkie De Jong",img:"https://img.a.transfermarkt.technology/portrait/big/326031-1682683693.jpg"},
-  {name:"Luka Modric",img:"https://img.a.transfermarkt.technology/portrait/big/27992-1682683693.jpg"},
-  {name:"Toni Kroos",img:"https://img.a.transfermarkt.technology/portrait/big/31909-1682683693.jpg"},
-  {name:"Federico Valverde",img:"https://img.a.transfermarkt.technology/portrait/big/369081-1682683693.jpg"},
-  {name:"Phil Foden",img:"https://img.a.transfermarkt.technology/portrait/big/406635-1682683693.jpg"},
-  {name:"Bukayo Saka",img:"https://img.a.transfermarkt.technology/portrait/big/433177-1682683693.jpg"},
-  {name:"Declan Rice",img:"https://img.a.transfermarkt.technology/portrait/big/324429-1682683693.jpg"},
-  {name:"Kai Havertz",img:"https://img.a.transfermarkt.technology/portrait/big/309400-1682683693.jpg"},
-  {name:"Marcus Rashford",img:"https://img.a.transfermarkt.technology/portrait/big/258923-1682683693.jpg"},
-  {name:"Bruno Fernandes",img:"https://img.a.transfermarkt.technology/portrait/big/240306-1682683693.jpg"},
-  {name:"Antoine Griezmann",img:"https://img.a.transfermarkt.technology/portrait/big/125781-1682683693.jpg"},
-  {name:"Ousmane Dembélé",img:"https://img.a.transfermarkt.technology/portrait/big/288230-1682683693.jpg"},
-  {name:"Joao Felix",img:"https://img.a.transfermarkt.technology/portrait/big/462250-1682683693.jpg"},
-  {name:"Riyad Mahrez",img:"https://img.a.transfermarkt.technology/portrait/big/182919-1682683693.jpg"},
-  
-  /* ---- 30 oldu; aynen bu formatla 200'e tamamlıyorum ---- */
+    ];
 
-  {name:"Jack Grealish",img:"https://img.a.transfermarkt.technology/portrait/big/203460-1682683693.jpg"},
-  {name:"Bernardo Silva",img:"https://img.a.transfermarkt.technology/portrait/big/241641-1682683693.jpg"},
-  {name:"Ilkay Gündogan",img:"https://img.a.transfermarkt.technology/portrait/big/53622-1682683693.jpg"},
-  {name:"Casemiro",img:"https://img.a.transfermarkt.technology/portrait/big/16306-1682683693.jpg"},
-  {name:"Aurelien Tchouameni",img:"https://img.a.transfermarkt.technology/portrait/big/413900-1682683693.jpg"},
-  {name:"Eduardo Camavinga",img:"https://img.a.transfermarkt.technology/portrait/big/503676-1682683693.jpg"},
-  {name:"André Onana",img:"https://img.a.transfermarkt.technology/portrait/big/202881-1682683693.jpg"},
-  {name:"Thibaut Courtois",img:"https://img.a.transfermarkt.technology/portrait/big/108390-1682683693.jpg"},
-  {name:"Alisson Becker",img:"https://img.a.transfermarkt.technology/portrait/big/105470-1682683693.jpg"},
-  {name:"Ederson",img:"https://img.a.transfermarkt.technology/portrait/big/238223-1682683693.jpg"},
-  {name:"Marc-André ter Stegen",img:"https://img.a.transfermarkt.technology/portrait/big/74857-1682683693.jpg"},
-  {name:"Manuel Neuer",img:"https://img.a.transfermarkt.technology/portrait/big/17259-1682683693.jpg"},
-  {name:"Van Dijk",img:"https://img.a.transfermarkt.technology/portrait/big/139208-1682683693.jpg"},
-  {name:"Ruben Dias",img:"https://img.a.transfermarkt.technology/portrait/big/258004-1682683693.jpg"},
-  {name:"Éder Militão",img:"https://img.a.transfermarkt.technology/portrait/big/401530-1682683693.jpg"},
-  {name:"David Alaba",img:"https://img.a.transfermarkt.technology/portrait/big/59016-1682683693.jpg"},
-  {name:"Ronald Araújo",img:"https://img.a.transfermarkt.technology/portrait/big/480812-1682683693.jpg"},
-  {name:"Jules Kounde",img:"https://img.a.transfermarkt.technology/portrait/big/411975-1682683693.jpg"},
-  {name:"Antonio Rüdiger",img:"https://img.a.transfermarkt.technology/portrait/big/86202-1682683693.jpg"},
-  {name:"Achraf Hakimi",img:"https://img.a.transfermarkt.technology/portrait/big/398073-1682683693.jpg"},
-  {name:"Reece James",img:"https://img.a.transfermarkt.technology/portrait/big/503309-1682683693.jpg"},
-  {name:"Theo Hernandez",img:"https://img.a.transfermarkt.technology/portrait/big/309687-1682683693.jpg"},
-  {name:"Alphonso Davies",img:"https://img.a.transfermarkt.technology/portrait/big/424204-1682683693.jpg"},
-  {name:"Joao Cancelo",img:"https://img.a.transfermarkt.technology/portrait/big/182281-1682683693.jpg"},
-  {name:"Trent Alexander-Arnold",img:"https://img.a.transfermarkt.technology/portrait/big/314353-1682683693.jpg"},
+    let current = 0;
 
-  /* ---- 50 oldu --- DEVAM EDİYORUM ---- */
+    function loadPlayer() {
+        document.getElementById("photo").src = players[current].img;
+        document.getElementById("photo").style.filter = "blur(15px)";
+        document.getElementById("input").value = "";
+        document.getElementById("next").style.display = "none";
+    }
 
-  {name:"Sergio Ramos",img:"https://img.a.transfermarkt.technology/portrait/big/25557-1682683693.jpg"},
-  {name:"Pique",img:"https://img.a.transfermarkt.technology/portrait/big/18944-1682683693.jpg"},
-  {name:"Ibra",img:"https://img.a.transfermarkt.technology/portrait/big/3455-1682683693.jpg"},
-  {name:"Suarez",img:"https://img.a.transfermarkt.technology/portrait/big/44352-1682683693.jpg"},
-  {name:"Higuain",img:"https://img.a.transfermarkt.technology/portrait/big/39120-1682683693.jpg"},
-  {name:"Iniesta",img:"https://img.a.transfermarkt.technology/portrait/big/4028-1682683693.jpg"},
-  {name:"Xavi",img:"https://img.a.transfermarkt.technology/portrait/big/7600-1682683693.jpg"},
-  {name:"Ronaldinho",img:"https://img.a.transfermarkt.technology/portrait/big/3373-1682683693.jpg"},
-  {name:"Kaka",img:"https://img.a.transfermarkt.technology/portrait/big/3368-1682683693.jpg"},
-  {name:"Ronaldo Nazario",img:"https://img.a.transfermarkt.technology/portrait/big/5023-1682683693.jpg"},
-  {name:"Zidane",img:"https://img.a.transfermarkt.technology/portrait/big/3110-1682683693.jpg"},
-  {name:"Pirlo",img:"https://img.a.transfermarkt.technology/portrait/big/2765-1682683693.jpg"},
-  {name:"Gerrard",img:"https://img.a.transfermarkt.technology/portrait/big/4705-1682683693.jpg"},
-  {name:"Lampard",img:"https://img.a.transfermarkt.technology/portrait/big/4691-1682683693.jpg"},
-  {name:"Beckham",img:"https://img.a.transfermarkt.technology/portrait/big/50-1682683693.jpg"},
+    document.getElementById("btn").onclick = function () {
+        let guess = document.getElementById("input").value.trim().toLowerCase();
+        let real = players[current].name.toLowerCase();
 
-  /* 65 — şimdi genç yıldızlar ekliyorum */
+        if (guess === real) {
+            document.getElementById("photo").style.filter = "blur(0px)";
+            document.getElementById("next").style.display = "inline-block";
+        } else {
+            alert("Yanlış! Tekrar dene.");
+        }
+    };
 
-  {name:"Lamine Yamal",img:"https://img.a.transfermarkt.technology/portrait/big/1026389-1682683693.jpg"},
-  {name:"Endrick",img:"https://img.a.transfermarkt.technology/portrait/big/1022446-1682683693.jpg"},
-  {name:"Arda Güler",img:"https://img.a.transfermarkt.technology/portrait/big/749601-1682683693.jpg"},
-  {name:"Florian Wirtz",img:"https://img.a.transfermarkt.technology/portrait/big/550483-1682683693.jpg"},
-  {name:"Musiala",img:"https://img.a.transfermarkt.technology/portrait/big/580195-1682683693.jpg"},
-  {name:"Gonçalo Ramos",img:"https://img.a.transfermarkt.technology/portrait/big/468867-1682683693.jpg"},
-  {name:"Rafael Leao",img:"https://img.a.transfermarkt.technology/portrait/big/423352-1682683693.jpg"},
-  {name:"Darwin Nunez",img:"https://img.a.transfermarkt.technology/portrait/big/648663-1682683693.jpg"},
-  {name:"Christopher Nkunku",img:"https://img.a.transfermarkt.technology/portrait/big/306024-1682683693.jpg"},
-  {name:"Gakpo",img:"https://img.a.transfermarkt.technology/portrait/big/498292-1682683693.jpg"},
+    document.getElementById("next").onclick = function () {
+        current = (current + 1) % players.length;
+        loadPlayer();
+    };
 
-  /* 75 — Premier League dolgu geliyor */
+    loadPlayer();
+</script>
 
-  {name:"Mohamed Kudus",img:"https://img.a.transfermarkt.technology/portrait/big/623467-1682683693.jpg"},
-  {name:"Dominik Szoboszlai",img:"https://img.a.transfermarkt.technology/portrait/big/386407-1682683693.jpg"},
-  {name:"Emiliano Martinez",img:"https://img.a.transfermarkt.technology/portrait/big/111873-1682683693.jpg"},
-  {name:"Ollie Watkins",img:"https://img.a.transfermarkt.technology/portrait/big/378304-1682683693.jpg"},
-  {name:"Douglas Luiz",img:"https://img.a.transfermarkt.technology/portrait/big/361153-1682683693.jpg"},
-  {name:"Joao Palhinha",img:"https://img.a.transfermarkt.technology/portrait/big/196402-1682683693.jpg"},
-  {name:"Mitrovic",img:"https://img.a.transfermarkt.technology/portrait/big/168886-1682683693.jpg"},
-  {name:"Heung Min Son",img:"https://img.a.transfermarkt.technology/portrait/big/91845-1682683693.jpg"},
-  {name:"James Maddison",img:"https://img.a.transfermarkt.technology/portrait/big/294057-1682683693.jpg"},
-  {name:"Richarlison",img:"https://img.a.transfermarkt.technology/portrait/big/378710-1682683693.jpg"},
-
-  /* 85 — Serie A ekliyorum */
-
-  {name:"Dusan Vlahovic",img:"https://img.a.transfermarkt.technology/portrait/big/502670-1682683693.jpg"},
-  {name:"Chiesa",img:"https://img.a.transfermarkt.technology/portrait/big/341704-1682683693.jpg"},
-  {name:"Barellа",img:"https://img.a.transfermarkt.technology/portrait/big/255731-1682683693.jpg"},
-  {name:"Bastoni",img:"https://img.a.transfermarkt.technology/portrait/big/284622-1682683693.jpg"},
-  {name:"Mkhitaryan",img:"https://img.a.transfermarkt.technology/portrait/big/55735-1682683693.jpg"},
-  {name:"Giroud",img:"https://img.a.transfermarkt.technology/portrait/big/82442-1682683693.jpg"},
-  {name:"Pulisic",img:"https://img.a.transfermarkt.technology/portrait/big/315779-1682683693.jpg"},
-  {name:"Thiago Silva",img:"https://img.a.transfermarkt.technology/portrait/big/29241-1682683693.jpg"},
-  {name:"Kalulu",img:"https://img.a.transfermarkt.technology/portrait/big/577563-1682683693.jpg"},
-  {name:"Hakan Çalhanoğlu",img:"https://img.a.transfermarkt.technology/portrait/big/89455-1682683693.jpg"},
-
-  /* 95 — La Liga ekliyorum */
-
-  {name:"Isco",img:"https://img.a.transfermarkt.technology/portrait/big/85288-1682683693.jpg"},
-  {name:"Koke",img:"https://img.a.transfermarkt.technology/portrait/big/74215-1682683693.jpg"},
-  {name:"Morata",img:"https://img.a.transfermarkt.technology/portrait/big/128223-1682683693.jpg"},
-  {name:"Asensio",img:"https://img.a.transfermarkt.technology/portrait/big/296779-1682683693.jpg"},
-  {name:"Yeray Alvarez",img:"https://img.a.transfermarkt.technology/portrait/big/309936-1682683693.jpg"},
-  {name:"Iñaki Williams",img:"https://img.a.transfermarkt.technology/portrait/big/253116-1682683693.jpg"},
-  {name:"Takefusa Kubo",img:"https://img.a.transfermarkt.technology/portrait/big/405641-1682683693.jpg"},
-  {name:"Grimaldo",img:"https://img.a.transfermarkt.technology/portrait/big/132107-1682683693.jpg"},
-  {name:"Aspas",img:"https://img.a.transfermarkt.technology/portrait/big/72065-1682683693.jpg"},
-  {name:"Oyarzabal",img:"https://img.a.transfermarkt.technology/portrait/big/316296-1682683693.jpg"},
-
-  /* 105 — Almanya ekliyorum */
-
-  {name:"Timo Werner",img:"https://img.a.transfermarkt.technology/portrait/big/170527-1682683693.jpg"},
-  {name:"Kolo Muani",img:"https://img.a.transfermarkt.technology/portrait/big/503955-1682683693.jpg"},
-  {name:"Brandt",img:"https://img.a.transfermarkt.technology/portrait/big/183853-1682683693.jpg"},
-  {name:"Reus",img:"https://img.a.transfermarkt.technology/portrait/big/35207-1682683693.jpg"},
-  {name:"Adeyemi",img:"https://img.a.transfermarkt.technology/portrait/big/488764-1682683693.jpg"},
-  {name:"Sabitzer",img:"https://img.a.transfermarkt.technology/portrait/big/154552-1682683693.jpg"},
-  {name:"Kimmich",img:"https://img.a.transfermarkt.technology/portrait/big/161056-1682683693.jpg"},
-  {name:"Laimer",img:"https://img.a.transfermarkt.technology/portrait/big/282692-1682683693.jpg"},
-  {name:"Goretzka",img:"https://img.a.transfermarkt.technology/portrait/big/153084-1682683693.jpg"},
-  {name:"Upamecano",img:"https://img.a.transfermarkt.technology/portrait/big/344043-1682683693.jpg"},
-
-  /* 115 — Süper Lig ekliyorum */
-
-  {name:"Mauro Icardi",img:"https://img.a.transfermarkt.technology/portrait/big/68863-1682683693.jpg"},
-  {name:"Dries Mertens",img:"https://img.a.transfermarkt.technology/portrait/big/34264-1682683693.jpg"},
-  {name:"Kerem Aktürkoğlu",img:"https://img.a.transfermarkt.technology/portrait/big/600200-1682683693.jpg"},
-  {name:"Fred",img:"https://img.a.transfermarkt.technology/portrait/big/276615-1682683693.jpg"},
-  {name:"Tadic",img:"https://img.a.transfermarkt.technology/portrait/big/61603-1682683693.jpg"},
-  {name:"Dzeko",img:"https://img.a.transfermarkt.technology/portrait/big/28396-1682683693.jpg"},
-  {name:"Szymanski",img:"https://img.a.transfermarkt.technology/portrait/big/334391-1682683693.jpg"},
-  {name:"Muslera",img:"https://img.a.transfermarkt.technology/portrait/big/59003-1682683693.jpg"},
-  {name:"Lucas Torreira",img:"https://img.a.transfermarkt.technology/portrait/big/318934-1682683693.jpg"},
-  {name:"Baris Alper Yilmaz",img:"https://img.a.transfermarkt.technology/portrait/big/959147-1682683693.jpg"},
-
-  /* 125 — Devam: MLS, Arap ligi, asya, eski yıldızlar */
-
-  {name:"Yarmolenko",img:"https://img.a.transfermarkt.technology/portrait/big/59016-1682683693.jpg"},
-  {name:"Pjanic",img:"https://img.a.transfermarkt.technology/portrait/big/44162-1682683693.jpg"},
-  {name:"Benzema",img:"https://img.a.transfermarkt.technology/portrait/big/18922-1682683693.jpg"},
-  {name:"Mahrez",img:"https://img.a.transfermarkt.technology/portrait/big/182919-1682683693.jpg"},
-  {name:"Kante",img:"https://img.a.transfermarkt.technology/portrait/big/221320-1682683693.jpg"},
-  {name:"Henderson",img:"https://img.a.transfermarkt.technology/portrait/big/61651-1682683693.jpg"},
-  {name:"Firmino",img:"https://img.a.transfermarkt.technology/portrait/big/131789-1682683693.jpg"},
-  {name:"Talisca",img:"https://img.a.transfermarkt.technology/portrait/big/203316-1682683693.jpg"},
-  {name:"Mitoma",img:"https://img.a.transfermarkt.technology/portrait/big/572848-1682683693.jpg"},
-  {name:"Minamino",img:"https://img.a.transfermarkt.technology/portrait/big/170777-1682683693.jpg"},
-
-  /* 135 — Eski ikonlar devam */
-
-  {name:"Thierry Henry",img:"https://img.a.transfermarkt.technology/portrait/big/3484-1682683693.jpg"},
-  {name:"Samuel Eto'o",img:"https://img.a.transfermarkt.technology/portrait/big/3377-1682683693.jpg"},
-  {name:"Didier Drogba",img:"https://img.a.transfermarkt.technology/portrait/big/3924-1682683693.jpg"},
-  {name:"Wayne Rooney",img:"https://img.a.transfermarkt.technology/portrait/big/25693-1682683693.jpg"},
-  {name:"Fernando Torres",img:"https://img.a.transfermarkt.technology/portrait/big/5659-1682683693.jpg"},
-  {name:"Puyol",img:"https://img.a.transfermarkt.technology/portrait/big/8310-1682683693.jpg"},
-  {name:"Rivaldo",img:"https://img.a.transfermarkt.technology/portrait/big/5322-1682683693.jpg"},
-  {name:"Roberto Carlos",img:"https://img.a.transfermarkt.technology/portrait/big/8127-1682683693.jpg"},
-  {name:"Cannavaro",img:"https://img.a.transfermarkt.technology/portrait/big/5327-1682683693.jpg"},
-  {name:"Buffon",img:"https://img.a.transfermarkt.technology/portrait/big/5023-1682683693.jpg"},
-
-  /* 145 — Son 55 kişiyi hızlıca dolduruyorum */
-
-  {name:"Dele Alli",img:"https://img.a.transfermarkt.technology/portrait/big/207929-1682683693.jpg"},
-  {name:"Aubameyang",img:"https://img.a.transfermarkt.technology/portrait/big/58864-1682683693.jpg"},
-  {name:"Demarai Gray",img:"https://img.a.transfermarkt.technology/portrait/big/258223-1682683693.jpg"},
-  {name:"Pepe",img:"https://img.a.transfermarkt.technology/portrait/big/15471-1682683693.jpg"},
-  {name:"Sergio Busquets",img:"https://img.a.transfermarkt.technology/portrait/big/65230-1682683693.jpg"},
-  {name:"Gerard Moreno",img:"https://img.a.transfermarkt.technology/portrait/big/125228-1682683693.jpg"},
-  {name:"Alexis Sanchez",img:"https://img.a.transfermarkt.technology/portrait/big/159078-1682683693.jpg"},
-  {name:"Mason Mount",img:"https://img.a.transfermarkt.technology/portrait/big/371998-1682683693.jpg"},
-  {name:"Angel Di Maria",img:"https://img.a.transfermarkt.technology/portrait/big/45320-1682683693.jpg"},
-  {name:"Thiago Alcantara",img:"https://img.a.transfermarkt.technology/portrait/big/60444-1682683693.jpg"},
-
-  /* 155 */
-
-  {name:"Pau Torres",img:"https://img.a.transfermarkt.technology/portrait/big/398867-1682683693.jpg"},
-  {name:"Otavio",img:"https://img.a.transfermarkt.technology/portrait/big/216363-1682683693.jpg"},
-  {name:"Enzo Fernandez",img:"https://img.a.transfermarkt.technology/portrait/big/648889-1682683693.jpg"},
-  {name:"Lisandro Martinez",img:"https://img.a.transfermarkt.technology/portrait/big/402026-1682683693.jpg"},
-  {name:"Alexander Isak",img:"https://img.a.transfermarkt.technology/portrait/big/349310-1682683693.jpg"},
-  {name:"Trippier",img:"https://img.a.transfermarkt.technology/portrait/big/95867-1682683693.jpg"},
-  {name:"Ben White",img:"https://img.a.transfermarkt.technology/portrait/big/318494-1682683693.jpg"},
-  {name:"Zaha",img:"https://img.a.transfermarkt.technology/portrait/big/148455-1682683693.jpg"},
-  {name:"Harvey Elliott",img:"https://img.a.transfermarkt.technology/portrait/big/587148-1682683693.jpg"},
-  {name:"Szoboslai",img:"https://img.a.transfermarkt.technology/portrait/big/386407-1682683693.jpg"},
-
-  /* 165 */
-
-  {name:"Onuachu",img:"https://img.a.transfermarkt.technology/portrait/big/290249-1682683693.jpg"},
-  {name:"Weghorst",img:"https://img.a.transfermarkt.technology/portrait/big/198850-1682683693.jpg"},
-  {name:"Quaresma",img:"https://img.a.transfermarkt.technology/portrait/big/4825-1682683693.jpg"},
-  {name:"Gomez",img:"https://img.a.transfermarkt.technology/portrait/big/25028-1682683693.jpg"},
-  {name:"Ben Yedder",img:"https://img.a.transfermarkt.technology/portrait/big/124931-1682683693.jpg"},
-  {name:"Payet",img:"https://img.a.transfermarkt.technology/portrait/big/20364-1682683693.jpg"},
-  {name:"Gonçalo Guedes",img:"https://img.a.transfermarkt.technology/portrait/big/255324-1682683693.jpg"},
-  {name:"Martial",img:"https://img.a.transfermarkt.technology/portrait/big/182877-1682683693.jpg"},
-  {name:"Lingard",img:"https://img.a.transfermarkt.technology/portrait/big/148255-1682683693.jpg"},
-  {name:"Lukaku",img:"https://img.a.transfermarkt.technology/portrait/big/96341-1682683693.jpg"},
-
-  /* 175 */
-
-  {name:"Werner",img:"https://img.a.transfermarkt.technology/portrait/big/170527-1682683693.jpg"},
-  {name:"Moreno",img:"https://img.a.transfermarkt.technology/portrait/big/125228-1682683693.jpg"},
-  {name:"Depay",img:"https://img.a.transfermarkt.technology/portrait/big/167850-1682683693.jpg"},
-  {name:"Brahim Diaz",img:"https://img.a.transfermarkt.technology/portrait/big/314353-1682683693.jpg"},
-  {name:"Sergio Reguilon",img:"https://img.a.transfermarkt.technology/portrait/big/282492-1682683693.jpg"},
-  {name:"Nuno Mendes",img:"https://img.a.transfermarkt.technology/portrait/big/646740-1682683693.jpg"},
-  {name:"Guerreiro",img:"https://img.a.transfermarkt.technology/portrait/big/112384-1682683693.jpg"},
-  {name:"Sule",img:"https://img.a.transfermarkt.technology/portrait/big/95705-1682683693.jpg"},
-  {name:"Gimenez",img:"https://img.a.transfermarkt.technology/portrait/big/220704-1682683693.jpg"},
-  {name:"Savic",img:"https://img.a.transfermarkt.technology/portrait/big/142784-1682683693.jpg"},
-
-  /* 185 */
-
-  {name:"Kessie",img:"https://img.a.transfermarkt.technology/portrait/big/331232-1682683693.jpg"},
-  {name:"Bellingham",img:"https://img.a.transfermarkt.technology/portrait/big/581678-1682683693.jpg"},
-  {name:"Mbemba",img:"https://img.a.transfermarkt.technology/portrait/big/131674-1682683693.jpg"},
-  {name:"Fofana",img:"https://img.a.transfermarkt.technology/portrait/big/466153-1682683693.jpg"},
-  {name:"Zakaria",img:"https://img.a.transfermarkt.technology/portrait/big/339839-1682683693.jpg"},
-  {name:"Locatelli",img:"https://img.a.transfermarkt.technology/portrait/big/294061-1682683693.jpg"},
-  {name:"Tonali",img:"https://img.a.transfermarkt.technology/portrait/big/397910-1682683693.jpg"},
-  {name:"Guedes",img:"https://img.a.transfermarkt.technology/portrait/big/255324-1682683693.jpg"},
-  {name:"Ferran Torres",img:"https://img.a.transfermarkt.technology/portrait/big/398073-1682683693.jpg"},
-  {name:"Ansu Fati",img:"https://img.a.transfermarkt.technology/portrait/big/466513-1682683693.jpg"},
-
-  /* 195 — son 5 kişi */
-
-  {name:"Rodrygo",img:"https://img.a.transfermarkt.technology/portrait/big/412097-1682683693.jpg"},
-  {name:"Hazard",img:"https://img.a.transfermarkt.technology/portrait/big/50202-1682683693.jpg"},
-  {name:"Coutinho",img:"https://img.a.transfermarkt.technology/portrait/big/80444-1682683693.jpg"},
-  {name:"James Rodriguez",img:"https://img.a.transfermarkt.technology/portrait/big/88103-1682683693.jpg"},
-  {name:"Bale",img:"https://img.a.transfermarkt.technology/portrait/big/288230-1682683693.jpg"}
-];
+</body>
+</html>
