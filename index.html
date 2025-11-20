@@ -1,97 +1,100 @@
-const players = [
-    {name: "Lionel Messi", img: "images/messi.jpg"},
-    {name: "Cristiano Ronaldo", img: "images/ronaldo.jpg"},
-    {name: "Neymar", img: "images/neymar.jpg"},
-    {name: "Kylian Mbappé", img: "images/mbappe.jpg"},
-    {name: "Erling Haaland", img: "images/haaland.jpg"},
-    {name: "Kevin De Bruyne", img: "images/debruyne.jpg"},
-    {name: "Vinicius Junior", img: "images/vinicius.jpg"},
-    {name: "Rodri", img: "images/rodri.jpg"},
-    {name: "Jude Bellingham", img: "images/bellingham.jpg"},
-    {name: "Mohamed Salah", img: "images/salah.jpg"},
-    {name: "Robert Lewandowski", img: "images/lewa.jpg"},
-    {name: "Harry Kane", img: "images/kane.jpg"},
-    {name: "Karim Benzema", img: "images/benzema.jpg"},
-    {name: "Bukayo Saka", img: "images/saka.jpg"},
-    {name: "Lautaro Martinez", img: "images/lautaro.jpg"},
-    {name: "Bruno Fernandes", img: "images/bruno.jpg"},
-    {name: "Marcelo Brozovic", img: "images/brozovic.jpg"},
-    {name: "Bernardo Silva", img: "images/bernardo.jpg"},
-    {name: "Luis Suárez", img: "images/suarez.jpg"},
-    {name: "Antoine Griezmann", img: "images/griezmann.jpg"},
-    {name: "Phil Foden", img: "images/foden.jpg"},
-    {name: "Gavi", img: "images/gavi.jpg"},
-    {name: "Pedri", img: "images/pedri.jpg"},
-    {name: "Frenkie De Jong", img: "images/dejong.jpg"},
-    {name: "Riyad Mahrez", img: "images/mahrez.jpg"},
-    {name: "Dusan Vlahovic", img: "images/vlahovic.jpg"},
-    {name: "Khvicha Kvaratskhelia", img: "images/kvara.jpg"},
-    {name: "João Félix", img: "images/joaofelix.jpg"},
-    {name: "Jadon Sancho", img: "images/sancho.jpg"},
-    {name: "Romelu Lukaku", img: "images/lukaku.jpg"},
-    {name: "Marcus Rashford", img: "images/rashford.jpg"},
-    {name: "Son Heung-Min", img: "images/son.jpg"},
-    {name: "Casemiro", img: "images/casemiro.jpg"},
-    {name: "Toni Kroos", img: "images/kroos.jpg"},
-    {name: "Luka Modric", img: "images/modric.jpg"},
-    {name: "Joshua Kimmich", img: "images/kimmich.jpg"},
-    {name: "Manuel Neuer", img: "images/neuer.jpg"},
-    {name: "Alisson Becker", img: "images/alisson.jpg"},
-    {name: "Thibaut Courtois", img: "images/courtois.jpg"},
-    {name: "Jan Oblak", img: "images/oblak.jpg"},
-    {name: "Ederson", img: "images/ederson.jpg"},
-    {name: "Achraf Hakimi", img: "images/hakimi.jpg"},
-    {name: "Virgil van Dijk", img: "images/vandijk.jpg"},
-    {name: "Ruben Dias", img: "images/dias.jpg"},
-    {name: "Raphael Varane", img: "images/varane.jpg"},
-    {name: "Marquinhos", img: "images/marquinhos.jpg"},
-    {name: "Eder Militao", img: "images/militao.jpg"},
-    {name: "David Alaba", img: "images/alaba.jpg"},
-    {name: "Trent Alexander-Arnold", img: "images/taa.jpg"},
-    {name: "Andrew Robertson", img: "images/robertson.jpg"},
-    {name: "Jordi Alba", img: "images/alba.jpg"},
-    {name: "Theo Hernandez", img: "images/theo.jpg"},
-    {name: "Sergio Ramos", img: "images/ramos.jpg"},
-    {name: "Gerard Piqué", img: "images/pique.jpg"},
-    {name: "Sadio Mané", img: "images/mane.jpg"},
-    {name: "Ángel Di María", img: "images/dimaria.jpg"},
-    {name: "Ousmane Dembélé", img: "images/dembele.jpg"},
-    {name: "Federico Valverde", img: "images/valverde.jpg"},
-    {name: "Marco Reus", img: "images/reus.jpg"},
-    {name: "Ilkay Gündogan", img: "images/gundogan.jpg"},
-    {name: "Kai Havertz", img: "images/havertz.jpg"},
-    {name: "Thiago Alcantara", img: "images/thiago.jpg"},
-    {name: "Paul Pogba", img: "images/pogba.jpg"},
-    {name: "Christian Eriksen", img: "images/eriksen.jpg"},
-    {name: "Joao Cancelo", img: "images/cancelo.jpg"},
-    {name: "Ben Chilwell", img: "images/chilwell.jpg"},
-    {name: "Kalidou Koulibaly", img: "images/koulibaly.jpg"},
-    {name: "Giorgio Chiellini", img: "images/chiellini.jpg"},
-    {name: "Leonardo Bonucci", img: "images/bonucci.jpg"},
-    {name: "Declan Rice", img: "images/rice.jpg"},
-    {name: "Nicolo Barella", img: "images/barella.jpg"},
-    {name: "Leroy Sané", img: "images/sane.jpg"},
-    {name: "Kingsley Coman", img: "images/coman.jpg"},
-    {name: "Raheem Sterling", img: "images/sterling.jpg"},
-    {name: "Cody Gakpo", img: "images/gakpo.jpg"},
-    {name: "Mason Mount", img: "images/mount.jpg"},
-    {name: "Zlatan Ibrahimovic", img: "images/ibrahimovic.jpg"},
-    {name: "Edinson Cavani", img: "images/cavani.jpg"},
-    {name: "Gabriel Jesus", img: "images/gabrieljesus.jpg"},
-    {name: "Richarlison", img: "images/richarlison.jpg"},
-    {name: "João Gomes", img: "images/joaogomes.jpg"},
-    {name: "Wilfried Zaha", img: "images/zaha.jpg"},
-    {name: "James Maddison", img: "images/maddison.jpg"},
-    {name: "Darwin Núñez", img: "images/nunez.jpg"},
-    {name: "Rafael Leão", img: "images/leão.jpg"},
-    {name: "Memphis Depay", img: "images/depay.jpg"},
-    {name: "Hakim Ziyech", img: "images/ziyech.jpg"},
-    {name: "Isco", img: "images/isco.jpg"},
-    {name: "Mesut Özil", img: "images/ozil.jpg"},
-    {name: "Andres Iniesta", img: "images/iniesta.jpg"},
-    {name: "Xavi", img: "images/xavi.jpg"},
-    {name: "Ronaldinho", img: "images/ronaldinho.jpg"},
-    {name: "Kaka", img: "images/kaka.jpg"},
-    {name: "Andrea Pirlo", img: "images/pirlo.jpg"},
-    {name: "David Beckham", img: "images/beckham.jpg"}
-];
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Futbolcu Tahmin Oyunu</title>
+<style>
+    body {
+        font-family: Arial;
+        text-align: center;
+        background: #111;
+        color: #fff;
+        padding: 30px;
+    }
+    #photo {
+        width: 250px;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 10px;
+        filter: blur(15px);
+        transition: 0.4s;
+        border: 3px solid #fff;
+    }
+    #input {
+        margin-top: 20px;
+        padding: 10px;
+        width: 200px;
+        border-radius: 6px;
+        border: none;
+    }
+    #btn {
+        padding: 10px 20px;
+        margin-left: 10px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+    #next {
+        display: none;
+        margin-top: 20px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+</style>
+</head>
+
+<body>
+
+<h2>⚽ Futbolcuyu Tahmin Et!</h2>
+
+<img id="photo">
+
+<div>
+    <input id="input" placeholder="Futbolcu adı...">
+    <button id="btn">Tahmin Et</button>
+</div>
+
+<button id="next">Sonraki Futbolcu</button>
+
+<script>
+    // Fotoğraflar (foto isimleri senin klasörüne göre)
+    const players = [
+        {name: "Ronaldo", img: "images/ronaldo.jpg"},
+        {name: "Messi", img: "images/messi.jpg"},
+        {name: "Neymar", img: "images/neymar.jpg"},
+        {name: "Haaland", img: "images/haaland.jpg"}
+    ];
+
+    let current = 0;
+
+    function loadPlayer() {
+        document.getElementById("photo").src = players[current].img;
+        document.getElementById("photo").style.filter = "blur(15px)";
+        document.getElementById("input").value = "";
+        document.getElementById("next").style.display = "none";
+    }
+
+    document.getElementById("btn").onclick = function () {
+        let guess = document.getElementById("input").value.trim().toLowerCase();
+        let real = players[current].name.toLowerCase();
+
+        if (guess === real) {
+            document.getElementById("photo").style.filter = "blur(0px)";
+            document.getElementById("next").style.display = "inline-block";
+        } else {
+            alert("Yanlış! Tekrar dene.");
+        }
+    };
+
+    document.getElementById("next").onclick = function () {
+        current = (current + 1) % players.length;
+        loadPlayer();
+    };
+
+    loadPlayer();
+</script>
+
+</body>
+</html>
