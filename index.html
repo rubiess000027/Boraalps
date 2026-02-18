@@ -1,97 +1,91 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<title>who am ı</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bir Şans Daha?</title>
+
 <style>
-    body {
-        font-family: Arial;
-        text-align: center;
-        background: purple;
-        color: #fff;
-        padding: 30px;
-    }
-    #photo {
-        width: 250px;
-        height: 250px;
-        object-fit: cover;
-        border-radius: 10px;
-        filter: blur(15px);
-        transition: 0.4s;
-        border: 3px solid #fff;
-    }
-    #input {
-        margin-top: 20px;
-        padding: 10px;
-        width: 200px;
-        border-radius: 6px;
-        border: none;
-    }
-    #btn {
-        padding: 10px 20px;
-        margin-left: 10px;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-    }
-    #next {
-        display: none;
-        margin-top: 20px;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-    }
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    color: white;
+}
+
+.container {
+    background: rgba(0,0,0,0.4);
+    padding: 40px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+button {
+    margin-top: 20px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.yes {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.no {
+    background-color: #f44336;
+    color: white;
+    position: relative;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
 </style>
 </head>
 
 <body>
 
-<h2>WHO AM I</h2>
+<div class="container">
+    <h1>Bir Şans Daha? 💖</h1>
+    <p>
+        Biliyorum hata yaptım...  
+        Ama şunu bil, seni riske atacak hiçbir şey hayatımda önemli değil.  
+        O kız muhabbeti tamamen kapandı.  
+        Sadece seninle huzurlu olmak istiyorum.
+    </p>
 
-<img id="photo">
-
-<div>
-    <input id="input" placeholder="Futbolcu adı...">
-    <button id="btn">Tahmin Et</button>
+    <button class="yes" onclick="alert('İyi ki varsın ❤️')">Affettim 💕</button>
+    <button class="no" onmouseover="moveButton()">Affetmem 😅</button>
 </div>
 
-<button id="next">Sonraki Futbolcu</button>
-
 <script>
-    // Fotoğraflar (foto isimleri senin klasörüne göre)
-   const players = [
- {name:"Cristiano Ronaldo",img:https://www.google.com/imgres?q=ronaldo%20vesikal%C4%B1k&imgurl=https%3A%2F%2Fw7.pngwing.com%2Fpngs%2F119%2F628%2Fpng-transparent-christiano-ronaldo-cristiano-ronaldo-fifa-18-real-madrid-c-f-portugal-national-football-team-uefa-champions-league-tayo-face-head-sports-thumbnail.png&imgrefurl=https%3A%2F%2Fwww.pngwing.com%2Ftr%2Ffree-png-nhivf&docid=Mem1pBGJP_urPM&tbnid=c8n4dKFUiOmjAM&vet=12ahUKEwieiq6k3YKRAxUcSvEDHdMiG14QM3oECC4QAA..i&w=360&h=360&hcb=2&ved=2ahUKEwieiq6k3YKRAxUcSvEDHdMiG14QM3oECC4QAA"},
-    ];
-
-    let current = 0;
-
-    function loadPlayer() {
-        document.getElementById("photo").src = players[current].img;
-        document.getElementById("photo").style.filter = "blur(15px)";
-        document.getElementById("input").value = "";
-        document.getElementById("next").style.display = "none";
-    }
-
-    document.getElementById("btn").onclick = function () {
-        let guess = document.getElementById("input").value.trim().toLowerCase();
-        let real = players[current].name.toLowerCase();
-
-        if (guess === real) {
-            document.getElementById("photo").style.filter = "blur(0px)";
-            document.getElementById("next").style.display = "inline-block";
-        } else {
-            alert("Yanlış! Tekrar dene.");
-        }
-    };
-
-    document.getElementById("next").onclick = function () {
-        current = (current + 1) % players.length;
-        loadPlayer();
-    };
-
-    loadPlayer();
+function moveButton() {
+    const button = document.querySelector(".no");
+    const x = Math.random() * 200 - 100;
+    const y = Math.random() * 200 - 100;
+    button.style.transform = `translate(${x}px, ${y}px)`;
+}
 </script>
 
 </body>
