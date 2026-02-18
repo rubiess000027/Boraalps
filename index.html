@@ -8,25 +8,37 @@
 </head>
 <body>
 
+<div class="overlay"></div>
+
 <div class="container">
-    <h1>Bir Şans Daha? 💖</h1>
+    <h1 class="glow">Seni Kaybetmek İstemiyorum 💖</h1>
+
     <p>
-        Biliyorum hata yaptım...  
-        Ama seni riske atacak hiçbir şey hayatımda önemli değil.  
-        O kız muhabbeti tamamen kapandı.  
-        Sadece seninle huzurlu olmak istiyorum.
+        Bu fotoğraftaki gülüşü tekrar görmek istiyorum.  
+        Hata yaptım ama seni kaybetmek gibi bir niyetim yok.  
+        O konu tamamen kapandı.  
+        Tek istediğim yine böyle yan yana olmak.
     </p>
 
-    <button class="yes" onclick="alert('İyi ki varsın ❤️')">Affettim 💕</button>
-    <button class="no" onmouseover="moveButton()">Affetmem 😅</button>
+    <div class="buttons">
+        <button class="yes" onclick="showLove()">Bir Şans Daha 💕</button>
+        <button class="no" onmouseover="moveButton()">Yok 😅</button>
+    </div>
 </div>
 
 <script>
 function moveButton() {
     const button = document.querySelector(".no");
-    const x = Math.random() * 200 - 100;
-    const y = Math.random() * 200 - 100;
+    const x = Math.random() * 300 - 150;
+    const y = Math.random() * 300 - 150;
     button.style.transform = `translate(${x}px, ${y}px)`;
+}
+
+function showLove() {
+    document.querySelector(".container").innerHTML = `
+        <h1 class="glow">İyi ki Sen ❤️</h1>
+        <p>Bir daha seni üzmeyecek bir adam olacağım.</p>
+    `;
 }
 </script>
 
