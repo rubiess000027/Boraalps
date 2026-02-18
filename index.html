@@ -1,34 +1,35 @@
-<div class="content">
-    <h1 class="title">Bora ❤️ Rengin</h1>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bora ❤️ Sen</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-    <p class="fade-text" id="message">
-        Bu fotoğraftaki gülüşünü tekrar görmek istiyorum Rengin…  
+<div class="background"></div>
+<div class="overlay"></div>
+
+<div class="content">
+    <h1 class="title">Bora ❤️ Sen</h1>
+    <p class="fade-text">
+        Bu fotoğraftaki anı tekrar yaşamak istiyorum…  
         Hata yaptım ama seni kaybetmek istemiyorum.  
         Tek istediğim yine böyle yan yana olmak.
     </p>
 
-    <button class="btn">Bir Şans Daha 💕</button>
-    <button class="no-btn" onclick="handleNo()">Hayır ❌</button>
+    <button class="btn" onclick="finalMessage()">Bir Şans Daha 💕</button>
 </div>
 
 <script>
-let clickCount = 0;
-
-function handleNo() {
-    clickCount++;
-    const noButton = document.querySelector(".no-btn");
-    const message = document.getElementById("message");
-
-    if (clickCount === 1) {
-        message.innerText = "Rengin valla pişmanım...";
-        noButton.style.transform = "scale(0.7)";
-    } 
-    else if (clickCount === 2) {
-        message.innerText = "Ne istersen yapcam söz barışalım 💔";
-        noButton.style.transform = "scale(0.4)";
-    } 
-    else if (clickCount >= 3) {
-        noButton.style.display = "none";
-    }
+function finalMessage() {
+    document.querySelector(".content").innerHTML = `
+        <h1 class="title">İyi ki Sen ❤️</h1>
+        <p class="fade-text">Seni bir daha asla üzmeyeceğim.</p>
+    `;
 }
 </script>
+
+</body>
+</html>
