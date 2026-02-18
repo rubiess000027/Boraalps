@@ -1,34 +1,89 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bora ❤️ Sen</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bora ❤️ Rengin</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="background"></div>
 <div class="overlay"></div>
 
-<div class="content">
-    <h1 class="title">Bora ❤️ Sen</h1>
-    <p class="fade-text">
-        Bu fotoğraftaki anı tekrar yaşamak istiyorum…  
-        Hata yaptım ama seni kaybetmek istemiyorum.  
-        Tek istediğim yine böyle yan yana olmak.
-    </p>
+<div class="intro" id="introText">Rengin...</div>
+
+<div class="container hidden" id="mainContent">
+    <h1 class="title">Bora ❤️ Rengin</h1>
+
+    <p class="days" id="daysTogether"></p>
+
+    <p class="typewriter" id="loveText"></p>
 
     <button class="btn" onclick="finalMessage()">Bir Şans Daha 💕</button>
+    <button class="music-btn" onclick="toggleMusic()">🎶</button>
 </div>
 
+<audio id="bgMusic" loop>
+    <source src="muzik.mp3" type="audio/mpeg">
+</audio>
+
 <script>
+// Gün sayısı (3 Haziran 2025)
+const startDate = new Date("June 3, 2025 00:00:00").getTime();
+const today = new Date().getTime();
+const diffDays = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
+document.getElementById("daysTogether").innerText =
+"3 Haziran'dan beri " + diffDays + " gündür aklımdasın 💖";
+
+// Intro animasyonu
+setTimeout(() => {
+    document.getElementById("introText").innerText = "Bora ❤️ Rengin";
+}, 2000);
+
+setTimeout(() => {
+    document.getElementById("introText").style.display = "none";
+    document.getElementById("mainContent").classList.remove("hidden");
+    typeEffect();
+}, 4000);
+
+// Typewriter
+const text = "Bu fotoğraftaki gülüşünü kaybetmek istemiyorum... Hata yaptım ama seni gerçekten önemsiyorum Rengin. 💕";
+let i = 0;
+function typeEffect() {
+    if (i < text.length) {
+        document.getElementById("loveText").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeEffect, 40);
+    }
+}
+
+// Final mesaj
 function finalMessage() {
-    document.querySelector(".content").innerHTML = `
-        <h1 class="title">İyi ki Sen ❤️</h1>
-        <p class="fade-text">Seni bir daha asla üzmeyeceğim.</p>
+    document.querySelector(".container").innerHTML = `
+        <h1 class="title">İyi ki Sen Rengin ❤️</h1>
+        <p class="typewriter">Seni bir daha asla üzmeyeceğim.</p>
     `;
 }
+
+// Müzik
+function toggleMusic() {
+    const music = document.getElementById("bgMusic");
+    if (music.paused) music.play();
+    else music.pause();
+}
+
+// Kalp efekti
+document.addEventListener("click", function(e) {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.style.left = e.clientX + "px";
+    heart.style.top = e.clientY + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 1000);
+});
 </script>
 
 </body>
