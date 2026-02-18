@@ -1,4 +1,4 @@
- {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -87,27 +87,4 @@ body {
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(40px); }
     to { opacity: 1; transform: translateY(0); }
-}
-
-/* Hayır Butonu */
-.no-btn {
-    margin-top: 15px;
-    padding: 12px 25px;
-    border: none;
-    border-radius: 30px;
-    font-size: 16px;
-    cursor: pointer;
-    background: #444;
-    color: white;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.no-btn:hover {
-    background: #222;
-}
-
-.no-btn.hide {
-    opacity: 0;
-    transform: scale(0);
-    pointer-events: none;
 }
