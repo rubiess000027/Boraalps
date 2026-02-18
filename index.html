@@ -3,41 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bir Şans Daha?</title>
+    <title>Bora ❤️ Sen</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<div class="background"></div>
 <div class="overlay"></div>
 
-<div class="container">
-    <h1 class="glow">Seni Kaybetmek İstemiyorum 💖</h1>
-
-    <p>
-        Bu fotoğraftaki gülüşü tekrar görmek istiyorum.  
-        Hata yaptım ama seni kaybetmek gibi bir niyetim yok.  
-        O konu tamamen kapandı.  
+<div class="content">
+    <h1 class="title">Bora ❤️ Sen</h1>
+    <p class="fade-text">
+        Bu fotoğraftaki anı tekrar yaşamak istiyorum…  
+        Hata yaptım ama seni kaybetmek istemiyorum.  
         Tek istediğim yine böyle yan yana olmak.
     </p>
 
-    <div class="buttons">
-        <button class="yes" onclick="showLove()">Bir Şans Daha 💕</button>
-        <button class="no" onmouseover="moveButton()">Yok </button>
-    </div>
+    <button class="btn" onclick="finalMessage()">Bir Şans Daha 💕</button>
 </div>
 
 <script>
-function moveButton() {
-    const button = document.querySelector(".no");
-    const x = Math.random() * 300 - 150;
-    const y = Math.random() * 300 - 150;
-    button.style.transform = `translate(${x}px, ${y}px)`;
-}
-
-function showLove() {
-    document.querySelector(".container").innerHTML = `
-        <h1 class="glow">İyi ki Sen ❤️</h1>
-        <p>Bir daha seni üzmeyecek bir adam olacağım.</p>
+function finalMessage() {
+    document.querySelector(".content").innerHTML = `
+        <h1 class="title">İyi ki Sen ❤️</h1>
+        <p class="fade-text">Seni bir daha asla üzmeyeceğim.</p>
     `;
 }
 </script>
