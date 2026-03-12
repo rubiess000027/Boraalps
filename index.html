@@ -37,44 +37,21 @@ Tekrar konuşmaya başlasak nasıl olur?😉😘
 </form>
 
 <script>
-
-let hayirSayisi = 0;
-let baslangic = Date.now();
-
-document.getElementById("telefon").value = navigator.userAgent;
-
 function moveButton() {
-
-hayirSayisi++;
-
-document.getElementById("hayirDeneme").value = hayirSayisi;
-
-const button = document.querySelector(".no");
-
-const x = Math.random() * 300 - 150;
-const y = Math.random() * 300 - 150;
-
-button.style.transform = `translate(${x}px, ${y}px)`;
-
+    const button = document.querySelector(".no");
+    const x = Math.random() * 300 - 150;
+    const y = Math.random() * 300 - 150;
+    button.style.transform = `translate(${x}px, ${y}px)`;
 }
 
-document.querySelector(".yes").addEventListener("click", function(){
-
-document.getElementById("evetBasti").value = "Evet";
-
-let sure = Math.floor((Date.now() - baslangic) / 1000);
-document.getElementById("sure").value = sure + " saniye";
-
-});
-
-document.querySelector(".container").innerHTML = `
-<h1 class="glow">Yeniden demek 😍</h1>
-<p>yuzyil basliyo.</p>
-`;
-
+function showLove() {
+    document.querySelector(".container").innerHTML = `
+        <h1 class="glow">Yeniden demek 😍</h1>
+        <p>yuzyil basliyo.</p>
+    `;
 }
-
 </script>
+
 
 </body>
 </html>
