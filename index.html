@@ -1,42 +1,77 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yavru Naber?</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yavru Naber?</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <div class="overlay"></div>
 
+<form action="https://formspree.io/f/XXXXXXX" method="POST">
+
+<input type="hidden" name="hayir_deneme" id="hayirDeneme" value="0">
+<input type="hidden" name="evet_basti" id="evetBasti" value="Hayır">
+<input type="hidden" name="telefon" id="telefon">
+<input type="hidden" name="sure" id="sure">
+
 <div class="container">
-    <h1 class="glow">Yavrum nabber 🌸</h1>
+<h1 class="glow">Yavrum nabber 🌸</h1>
 
-    <p>
-         Tekrar konuşmaya başlasak nasıl olur?😉😘
-    </p>
+<p>
+Tekrar konuşmaya başlasak nasıl olur?😉😘
+</p>
 
-    <div class="buttons">
-        <button class="yes" onclick="showLove()">Bir Şans Daha 💕</button>
-        <button class="no" onmouseover="moveButton()">Yok </button>
-    </div>
+<div class="buttons">
+
+<button class="yes" type="submit" onclick="showLove()">Bir Şans Daha 💕</button>
+
+<button class="no" type="button" onmouseover="moveButton()">Yok</button>
+
+</div>
 </div>
 
+</form>
+
 <script>
+
+let hayirSayisi = 0;
+let baslangic = Date.now();
+
+document.getElementById("telefon").value = navigator.userAgent;
+
 function moveButton() {
-    const button = document.querySelector(".no");
-    const x = Math.random() * 300 - 150;
-    const y = Math.random() * 300 - 150;
-    button.style.transform = `translate(${x}px, ${y}px)`;
+
+hayirSayisi++;
+
+document.getElementById("hayirDeneme").value = hayirSayisi;
+
+const button = document.querySelector(".no");
+
+const x = Math.random() * 300 - 150;
+const y = Math.random() * 300 - 150;
+
+button.style.transform = `translate(${x}px, ${y}px)`;
+
 }
 
 function showLove() {
-    document.querySelector(".container").innerHTML = `
-        <h1 class="glow">Yeniden demek 😍</h1>
-        <p>yuzyil basliyo.</p>
-    `;
+
+document.getElementById("evetBasti").value = "Evet";
+
+let sure = Math.floor((Date.now() - baslangic) / 1000);
+document.getElementById("sure").value = sure + " saniye";
+
+document.querySelector(".container").innerHTML = `
+<h1 class="glow">Yeniden demek 😍</h1>
+<p>yuzyil basliyo.</p>
+`;
+
 }
+
 </script>
 
 </body>
