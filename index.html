@@ -58,12 +58,14 @@ button.style.transform = `translate(${x}px, ${y}px)`;
 
 }
 
-function showLove() {
+document.querySelector(".yes").addEventListener("click", function(){
 
 document.getElementById("evetBasti").value = "Evet";
 
 let sure = Math.floor((Date.now() - baslangic) / 1000);
 document.getElementById("sure").value = sure + " saniye";
+
+});
 
 document.querySelector(".container").innerHTML = `
 <h1 class="glow">Yeniden demek 😍</h1>
