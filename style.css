@@ -28,7 +28,6 @@ body {
     position: relative;
     z-index: 2;
     background: rgba(255,255,255,0.15);
-    backdrop-filter: blur(15px);
     padding: 40px;
     border-radius: 25px;
     width: 90%;
